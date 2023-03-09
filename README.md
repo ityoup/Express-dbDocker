@@ -1,5 +1,5 @@
 # No olvide poner
 
-npm install
+`npm install`
 
 para instalar todas las dependecias
