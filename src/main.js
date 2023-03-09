@@ -5,7 +5,13 @@ import ejs from "ejs";
 
 
 const app = express();
+
+app.use(express.urlencoded())
 app.use(Rutas);
+
+
+
+
 
 
 app.set('view engine', 'ejs');

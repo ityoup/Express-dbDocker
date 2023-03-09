@@ -1,19 +1,37 @@
 import { con } from "../db.js";
-import { Router } from "express";
+import { Router} from "express";
+
 
 
 
 const router = Router();
 
-router.get('/insertar/:nombre/:edad',async(req, res)=>{
-    res.send(`El alumno ${req.params.nombre} con ${req.params.edad}, ha sido insertado`)
-    const [resultados] = await con.query("Select * from alumnos");
-    console.log(resultados);
-    const insertar = await con.query(`INSERT INTO alumnos(nombre,edad) VALUES ('${req.params.nombre}','${req.params.edad}')`);
+
+
+router.get('/xd',(req, res)=>{
+    let name = req.query.name;
+    let edad = req.query.edad;
+    
+    
 })
 
 router.get('/alumnos',async(req, res)=>{
     const [resultados] = await con.query("Select * from alumnos");
     res.render('index', {resultados:resultados})
 })
+
+
+router.post("/insert",(req, res)=>{
+    let nombre = req.body.name;
+    let edad = req.body.edad;
+    let imagen = req.body.imagen;
+    async function insertDB() {
+        const mandar = await con.query(`insert into alumnos(nombre, edad) values ('${nombre}',${edad})`);
+        
+    }
+    insertDB();
+    res.redirect("/alumnos")
+
+})
+
 export default router;
